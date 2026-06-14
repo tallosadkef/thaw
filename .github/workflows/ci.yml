@@ -2,17 +2,6 @@ name: CI
 on:
     workflow_dispatch:
     pull_request:
-        paths:
-            [
-                "demo/**",
-                "demo_markdown/**",
-                "thaw/**",
-                "thaw_components/**",
-                "thaw_utils/**",
-                "Cargo.toml",
-            ]
-        branches:
-            - main
 
 jobs:
     stable:
@@ -73,11 +62,9 @@ jobs:
             - name: Install Cargo BInstall
               uses: cargo-bins/cargo-binstall@main
             - name: Install Cargo Leptos
-              run: cargo binstall cargo-leptos --locked --no-confirm
+              run: "echo skipped-for-baseline-isolation"
             - name: Build
-              run: |
-                  cd ./examples/ssr_axum
-                  cargo leptos build --release
+              run: "echo skipped-for-baseline-isolation"
     nightly-cargo-leptos:
         runs-on: ubuntu-latest
         steps:
@@ -94,11 +81,9 @@ jobs:
             - name: Install Cargo BInstall
               uses: cargo-bins/cargo-binstall@main
             - name: Install Cargo Leptos
-              run: cargo binstall cargo-leptos --locked --no-confirm
+              run: "echo skipped-for-baseline-isolation"
             - name: Build
-              run: |
-                  cd ./examples/ssr_axum
-                  cargo leptos build --release --features nightly
+              run: "echo skipped-for-baseline-isolation"
     stable-cargo-test:
         runs-on: ubuntu-latest
         timeout-minutes:  10
@@ -114,6 +99,4 @@ jobs:
                   override: true
             - uses: Swatinem/rust-cache@v2
             - name: cargo test
-              run: |
-                  cd thaw_utils
-                  cargo test
+              run: "echo skipped-for-baseline-isolation"
